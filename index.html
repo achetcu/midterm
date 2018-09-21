@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Budget Buddy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Roboto" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Budget Buddy</h1>
-        <h2>Weekly Total</h2>
-        <button>Input Total</button>
-        <div id ="spent">&dollar;total spent</div>
-        <div id = "left">&dollar;left</div>
+        <div class="head">
+            <h3>Add Budget</h3>
+            <h2 id="budget">&#43;</h2>
+            <div id="left">&dollar; 0 left</div>
+            <div id="spent">&dollar; 0 total spent</div>
+        </div>
     </header>
-    <div class = "category">
-        <h3>Enter amount below</h3>
-        <select name="category">
-                <option value="Entertainment">Entertainment</option>
-                <option value="Food">Food</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Bills">Bills</option>
-              </select>
-              <input type = "text">
-              <button>Submit</button>
-
-
+    <div class="category">
+        <h3>Enter amount spent below</h3>
+        <select id="category" name="category">
+            <option value="Entertainment">Entertainment</option>
+            <option value="Food">Food</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Bills">Bills</option>
+        </select>
+        <input id="amount" type="text">
+        <button id="sumbit">Submit</button>
     </div>
-    <div Class = "ExpenseHistory">
 
-        <h3>Transaction History</h3>
-        <ul>
-            <li>Entertainment: &dollar;100</li>
-            <li>Food: &dollar;100</li>
-            <li>Clothing: &dollar;100</li>
-            <li>Bills: &dollar;100</li>
+    <section>
 
-        </ul>
-       
-    </div>
+            <div class="categoryTotal">
+                <h3> <span id = "arrow2">&#10132;</span> Category Totals </h3>
+                <ul id="transactionTotal">
+                   
+                    <li id="entertainmentTotal">Entertainment: &dollar;0</li>
+                    <li id="foodTotal">Food: &dollar;0</li>
+                    <li id="clothingTotal">Clothing: &dollar;0</li>
+                    <li id="billsTotal">Bills: &dollar;0</li>
+                   
+                 </ul>
+             </div>
+             
+             <div class="transactions">
+                 <h3> <span id="arrow" >&#10132;</span> Transaction History</h3>
+                 
+                 <ul id="transactionHistory"></ul>
+             </div>
+         </section>
+    <div id="chart_div"></div>
     
-        <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <footer>
+        <input type="button" value="Reset Budget" onClick="document.location.reload(true)">
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
     <script src="index.js"></script>
 </body>
+
 </html>
