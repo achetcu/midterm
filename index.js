@@ -9,59 +9,68 @@ let bills = 0;
 
 function weeklyTotal() {
     const inputTotal = parseFloat(prompt("Whats the weekly budget?", "250"));
-
     weeklyBudget += inputTotal;
 };
 
 $("#budget").one("click", weeklyTotal);
 
 function budgetLeft() {
-    $("#left").html(`&dollar; ${weeklyBudget - totalSpent} remaining`);
+    let remaining = weeklyBudget - totalSpent;
+    let newRemaining = remaining.toFixed(2);
+    $("#left").html(`&dollar; ${newRemaining} remaining`);
 };
 
 $("#budget").on("click", budgetLeft);
 
 function amountListed() {
     const amount = parseFloat(document.querySelector('#amount').value);
-    totalSpent += amount;
-    $("#spent").html(`&dollar; ${totalSpent} spent`);
+    const total = totalSpent += amount;
+    const newtotalSpent = total.toFixed(2);
+    $("#spent").html(`&dollar; ${newtotalSpent} spent`);
     updateAmount();
 };
 $("#sumbit").on("click", amountListed)
 
 function updateAmount() {
-    $("#left").html(`&dollar; ${weeklyBudget - totalSpent} remaining`);
+    let remaining = weeklyBudget - totalSpent
+    let newRemaining = remaining.toFixed(2);
+    $("#left").html(`&dollar; ${newRemaining} remaining`);
     zeroBalance();
 };
 
 function show_selected() {
     const amount = parseFloat(document.querySelector('#amount').value);
+    const newamount = amount.toFixed(2)
     const selector = document.getElementById('category');
     const value = selector[selector.selectedIndex].value;
 
-    $("#transactionHistory").append(`<li>${value}: &dollar;${amount}</li>`);
+    $("#transactionHistory").append(`<li>${value}: &dollar;${newamount}</li>`);
 };
 $("#sumbit").on("click", show_selected)
 
 function transactionUpdate() {
-    const amount = parseFloat(document.querySelector('#amount').value);
+    const amount = parseFloat(document.querySelector('#amount').value);;
     const selector = document.getElementById('category');
     const value = selector[selector.selectedIndex].value;
     if (value === 'Entertainment') {
-        entertainment += amount
-        $("#entertainmentTotal").html(`Entertainment: &dollar;${entertainment}`);
+       let enterTotal =  entertainment += amount;
+       let newenterTotal = enterTotal.toFixed(2);
+        $("#entertainmentTotal").html(`Entertainment: &dollar;${newenterTotal}`);
     };
     if (value === 'Food') {
-        food += amount
-        $("#foodTotal").html(`Food: &dollar;${food}`);
+        let foodTotal = food += amount;
+        let newfoodTotal = foodTotal.toFixed(2);
+        $("#foodTotal").html(`Food: &dollar;${newfoodTotal}`);
     };
     if (value === 'Clothing') {
-        clothing += amount
-        $("#clothingTotal").html(`Clothing: &dollar;${clothing}`);
+       let clothingTotal = clothing += amount;
+       let newclothingTotal = clothingTotal.toFixed(2);
+        $("#clothingTotal").html(`Clothing: &dollar;${newclothingTotal}`);
     };
     if (value === 'Bills') {
-        bills += amount
-        $("#billsTotal").html(`Bills: &dollar;${bills}`);
+        let billsTotal = bills += amount;
+        let newbillsTotal = billsTotal.toFixed(2);
+        $("#billsTotal").html(`Bills: &dollar;${newbillsTotal}`);
     };
     drawBasic();
 };
@@ -70,7 +79,7 @@ $("#sumbit").on("click", transactionUpdate)
 
 function zeroBalance() {
     let zero = weeklyBudget - totalSpent
-    if (zero < 0) {
+    if (zero <= 0) {
         alert("You used all of the weekly budget. No more spending!")
     };
 };
